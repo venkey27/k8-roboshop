@@ -48,19 +48,20 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogue
+  name: frontend
   namespace: roboshop
   # servicer labels
   labels:
     project: roboshop
-    tier: backend
-    component: catalogue
+    tier: frontend
+    component: frontend
 spec:
+  type: LoadBalancer
   # Service uses the below labels to select the pods
   selector:
     project: roboshop
-    tier: backend
-    component: catalogue
+    tier: frontend
+    component: frontend
   ports:
     - protocol: TCP
       port: 8080 # service port
