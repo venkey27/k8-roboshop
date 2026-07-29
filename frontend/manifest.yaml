@@ -127,6 +127,7 @@ metadata:
     tier: frontend
     component: frontend
 spec:
+  type: LoadBalancer
   # Service uses the below labels to select the pods
   selector:
     project: roboshop
