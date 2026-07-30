@@ -107,7 +107,11 @@ spec:
           mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
         # containers in the POD share same network space and storage 
-        # volumes belong to the Pod.This is pod level, it is like adding the disk to the pod, 
+        # volumes belong to the Pod.This is pod level, it is like adding the disk to the pod,
+        # volume is a storage, we are adding storage(volume) to pod and use this storage(volume) by mounting to container
+        # a volume exists to store data and make it accessible to your containerized application. 
+        # Configuration Data: Storing configuration files (like your nginx.conf) or API secrets so your code can read them as standard files on disk.
+        # Storing database entries, uploaded images, or logs that you don't want to lose if the container crashes.
       volumes:
       - name: nginx-config
         configMap:
