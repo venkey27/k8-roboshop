@@ -12,14 +12,14 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-app-deployment
+  name: cart
   namespace: roboshop
   labels:
     project: roboshop
     tier: backend
     component: cart
 
-# replicaset
+# replicasets
 spec:
   replicas: 1
   selector:
