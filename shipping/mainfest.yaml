@@ -42,11 +42,13 @@ spec:
         - name: liveness-port
           containerPort: 8080
         # startup probe -> is the container done with booting. this runs only 1 time.
-        startupProbe:
+        # The Startup Probe disables (pauses) Liveness and Readiness probes until the application finishes booting up.
+        #A Startup Probe is designed to handle applications that take a long time to boot up (like legacy Java apps, apps running heavy .
+        startupProbe:                                                         # initial database migrations, or loading large datasets)
           httpGet:
             path: /health
             port: liveness-port
-            # we are giving 5 minutes to start the application
+            # we are giving 2 minutes to start the application
           failureThreshold: 12
           periodSeconds: 10
         # readiness probe -> is the container ready to accept traffic? kubernetes continously check whether pod and containers are ready or not,
@@ -57,7 +59,7 @@ spec:
             port: liveness-port
           periodSeconds: 10
         # liveness probe -> long running applications usually will have some locks, kubernetes continously checks whether application is live or not, 
-        livenessProbe:                                                                              # if not live it will restart the application/pod
+        livenessProbe:                                                             # if not live then Kubernetes restarts the container, not the Pod itself.
           httpGet:
             path: /health
             port: liveness-port
