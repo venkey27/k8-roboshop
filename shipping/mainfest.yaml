@@ -25,7 +25,7 @@ spec:
       project: roboshop
       tier: backend
       component: shipping
-      
+
   # Pod
   template:
     metadata:
@@ -37,6 +37,31 @@ spec:
       containers:
       - name: shipping
         image: joindevops/shipping:4.0.0
+
+        ports:
+        - name: liveness-port
+          containerPort: 8080
+        # startup probe -> is the container done with booting. this runs only 1 time.
+        startupProbe:
+          httpGet:
+            path: /health
+            port: liveness-port
+            # we are giving 5 minutes to start the application
+          failureThreshold: 12
+          periodSeconds: 10
+        # readiness probe -> is the container ready to accept traffic? kubernetes continously check whether pod and containers are ready or not,
+        # If not ready, then Kubernetes removes the Pod's IP address from the Service's Endpoints list, temporarily stopping user traffic from  
+        readinessProbe:                                                                     # reaching that container until it becomes ready again.
+          httpGet:
+            path: /health         #continers lives inside pod, if containers are not ready then kubernetes removes pod ip address  form endpoint
+            port: liveness-port
+          periodSeconds: 10
+        # liveness probe -> long running applications usually will have some locks, kubernetes continously checks whether application is live or not, 
+        livenessProbe:                                                                              # if not live it will restart the application/pod
+          httpGet:
+            path: /health
+            port: liveness-port
+          periodSeconds: 10
         envFrom:
         - configMapRef:
             name: shipping
