@@ -111,7 +111,7 @@ spec:
         # volume is a storage, we are adding storage(volume) to pod and use this storage(volume) by mounting to container
         # a volume exists to store data and make it accessible to your containerized application. 
         # Configuration Data: Storing configuration files (like your nginx.conf) or API secrets so your code can read them as standard files on disk.
-        # Storing database entries, uploaded images, or logs that you don't want to lose if the container crashes.
+        # Application Data: Storing database entries, uploaded images, or logs that you don't want to lose if the container crashes.
       volumes:
       - name: nginx-config
         configMap:
