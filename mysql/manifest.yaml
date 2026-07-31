@@ -5,7 +5,7 @@ metadata:
   namespace: roboshop
 type: Opaque
 data:
-  MYSQL_ALLOW_EMPTY_PASSWORD: "cm9ib3Nob3BAMQo="
+  MYSQL_ALLOW_EMPTY_PASSWORD: "eWVzCg=="
 ---
 
 apiVersion: apps/v1
