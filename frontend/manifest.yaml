@@ -106,6 +106,7 @@ spec:
         - name: nginx-config 
           mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
+          readOnly: true
         # containers in the POD share same network space and storage 
         # volumes belong to the Pod.This is pod level, it is like adding the disk to the pod,
         # volume is a storage, we are adding storage(volume) to pod and use this storage(volume) by mounting to container
