@@ -10,7 +10,7 @@ data:
     error_log /var/log/nginx/error.log notice;
     pid /run/nginx.pid;
 
-    include /usr/share/nginx/modules/*.csonf;
+    include /usr/share/nginx/modules/*.conf;
 
     events {
         worker_connections 1024;
