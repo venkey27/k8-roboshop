@@ -49,8 +49,9 @@ spec:
             path: /health
             port: liveness-port
             # we are giving 2 minutes to start the application
-          failureThreshold: 12
+          failureThreshold: 30
           periodSeconds: 10
+          initialDelaySeconds: 10
         # readiness probe -> is the container ready to accept traffic? kubernetes continously check whether pod and containers are ready or not,
         # If not ready, then Kubernetes removes the Pod's IP address from the Service's Endpoints list, temporarily stopping user traffic from  
         readinessProbe:                                                                     # reaching that container until it becomes ready again.
